@@ -1,0 +1,34 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        std::stack<int> temp;
+        for(int i=0; i<s.length(); i++)
+        {
+            if(s[i] == '(' || s[i] == '[' || s[i] == '{')
+            {
+                temp.push(s[i]);
+            }
+            else
+            {
+
+                if(temp.empty())
+                {
+                    return false;
+                }
+
+
+                if((s[i] == ')' && temp.top() == '(' )|| (s[i] == ']' && temp.top() == '[')|| (s[i] == '}' && temp.top() == '{'))
+                {
+                    temp.pop();
+                }
+                else
+                {
+                    return false;
+                }
+
+            } 
+        }
+
+        return temp.empty();
+    }
+};
