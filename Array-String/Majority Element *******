@@ -1,0 +1,44 @@
+//NOTE: This solution requires the use of Moore's voting algo (V.V.IMP)
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int count = 0;
+        int candidate = 0;
+
+        for(int i = 0; i< nums.size(); i++)
+        {
+            if(count == 0)
+            {
+                candidate = nums[i];
+            }
+            if(nums[i] == candidate)
+            {
+                count++;
+            }
+            else
+            {
+                count--;
+            }
+        }
+        return candidate;
+    }
+};
+
+//You must verify the candidate if the question does not guarantee the presence of a majority element
+/*
+     count = 0;
+        for (int num : nums) //DONT USE THIS BS IT SLOWS DOWN THE PROGRAM {
+            if (num == candidate) {
+                count++;
+            }
+        }
+
+        if (count > nums.size() / 2) {
+            return candidate;
+        } else {
+            // This line should theoretically never be reached if the problem guarantees a majority element
+            throw std::runtime_error("No majority element found");
+        }
+
+*/
