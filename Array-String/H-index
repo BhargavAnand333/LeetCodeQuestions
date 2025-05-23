@@ -1,0 +1,40 @@
+What doesn't work: O(n^2) Time Complexity
+
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        int ans;
+        for (int i=1; i<citations.size(); i++){
+            int nums = 0;
+            for(int j =0; j<citations.size(); j++){
+                if (citations[j] >=  i){
+                    nums++;
+                    if (nums == i){
+                        ans = nums;
+                        break;
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+***********************************************************
+
+What works: O(nlogn)
+
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        sort(citations.begin(), citations.end());
+        int n = citations.size();
+        for (int i = 0; i < n; ++i) {
+            int h = n - i; 
+            if (citations[i] >= h) {
+                return h;
+            }
+        }
+        return 0;
+    }
+};
